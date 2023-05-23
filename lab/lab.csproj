@@ -7,4 +7,13 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Reference Include="ItemClassLibrary">
+      <HintPath>..\..\laboratornaya-rabota-10-makonov\ItemClassLibrary\bin\Debug\net6.0\ItemClassLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="MyCollectionLibrary">
+      <HintPath>..\..\laboratornaya-rabota-12-makonov\MyCollectionLibrary\bin\Debug\net6.0\MyCollectionLibrary.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>
