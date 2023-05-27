@@ -21,11 +21,21 @@ namespace lab
         }
 
         /// <summary>
-        /// Записывает в журнал новое вхождение при возникновении события в классе коллекции
+        /// Записывает в журнал новое вхождение при возникновении события смены кол-ва элементов в коллекции
         /// </summary>
-        public void WriteCollectionChange(object source, CollectionHandlerEventArgs e)
+        public void WriteCollectionCountChange(object source, CollectionHandlerEventArgs e)
         {
-            JournalEntry je = new JournalEntry(e.CollectionName, e.ChangeType, e.ElementReference.ToString());
+            JournalEntry je = new JournalEntry(e.CollectionName, e.ChangeType, e.Obj.ToString());
+            journal.Add(je);
+            Count++;
+        }
+
+        /// <summary>
+        /// Записывает в журнал новое вхождение при возникновении события смены ссылки на элемент в коллекции
+        /// </summary>
+        public void WriteCollectionReferenceChange(object source, CollectionHandlerEventArgs e)
+        {
+            JournalEntry je = new JournalEntry(e.CollectionName, e.ChangeType, e.Obj.ToString());
             journal.Add(je);
             Count++;
         }
@@ -58,6 +68,7 @@ namespace lab
             }
         }
 
+        [ExcludeFromCodeCoverage] // данный метод не вызывается, и сооответсвенно он не реализован
         IEnumerator IEnumerable.GetEnumerator()
         {
             throw new NotImplementedException();

@@ -36,6 +36,7 @@ namespace lab
 
         //Добавлено возникновение события CollectionCountChanged при добавлении нового элемента
         //и возникновение события CollectionReferenceChanged при изменении ссылки элемента
+        //P.S. данный метод вызывается как при добавлении через Add и Insert, так и в индексаторе
         protected override void AddHashTableElement(HashTableElement<T> element)
         {
             if (element.Value is null)
@@ -53,11 +54,11 @@ namespace lab
             if (table[hash] is null || (table[hash] is not null && table[hash].Key != element.Key))
             {
                 Count++;
-                OnCountChanged(this, new CollectionHandlerEventArgs(Name, "Добавление", element));
+                OnCountChanged(this, new CollectionHandlerEventArgs(Name, "добавление", element));
             }
             else if (table[hash] is not null && table[hash].Key == element.Key)
             {
-                OnReferenceChanged(this, new CollectionHandlerEventArgs(Name, "Изменение ссылки", element));
+                OnReferenceChanged(this, new CollectionHandlerEventArgs(Name, "изменение ссылки", element));
             }
             table[hash] = element;
         }
@@ -72,7 +73,7 @@ namespace lab
             {
                 if (table[i] is not null && table[i].Value.Equals(data))
                 {
-                    OnCountChanged(this, new CollectionHandlerEventArgs(Name, "Удаление по значению", table[i]));
+                    OnCountChanged(this, new CollectionHandlerEventArgs(Name, "удаление по значению", table[i]));
                     table[i] = null;
                     Count--;
                     return true;
@@ -90,7 +91,7 @@ namespace lab
             {
                 if (table[hash] is not null && table[hash].Key == key)
                 {
-                    OnCountChanged(this, new CollectionHandlerEventArgs(Name, "Удаление по ключу", table[hash]));
+                    OnCountChanged(this, new CollectionHandlerEventArgs(Name, "удаление по ключу", table[hash]));
                     table[hash] = null;
                     Count--;
                     return;

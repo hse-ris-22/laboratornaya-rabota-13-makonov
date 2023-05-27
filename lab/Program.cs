@@ -33,17 +33,19 @@ namespace lab
             NewHashTable<Item> t2 = new NewHashTable<Item>("Коллекция 2");
             Journal j1 = new Journal();
             Journal j2 = new Journal();
-            t1.CollectionCountChanged += j1.WriteCollectionChange;
-            t1.CollectionReferenceChanged += j1.WriteCollectionChange;
+            t1.CollectionCountChanged += j1.WriteCollectionCountChange;
+            t1.CollectionReferenceChanged += j1.WriteCollectionReferenceChange;
 
-            t1.CollectionReferenceChanged += j2.WriteCollectionChange;
-            t2.CollectionReferenceChanged += j2.WriteCollectionChange;
+            t1.CollectionReferenceChanged += j2.WriteCollectionReferenceChange;
+            t2.CollectionReferenceChanged += j2.WriteCollectionReferenceChange;
 
             t1.Insert(22, CreateRandomItem());
             t1.Add(CreateRandomItem());
             t1.Add(CreateRandomItem());
+            t1.Add(new Item());
             t1[22] = CreateRandomItem();
             t1.RemoveAt(22);
+            t1.Remove(new Item());
 
             t2.Insert(32, CreateRandomItem());
             t2.Insert(45, CreateRandomItem());

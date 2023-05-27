@@ -13,7 +13,7 @@ namespace lab.Tests
         {
             NewHashTable<Item> table = new NewHashTable<Item>("Коллекция 1");
             Journal journal = new Journal();
-            table.CollectionCountChanged += journal.WriteCollectionChange;
+            table.CollectionCountChanged += journal.WriteCollectionCountChange;
             table.Add(Program.CreateRandomItem());
             table.Add(Program.CreateRandomItem());
             Assert.AreEqual(2, journal.Count);
@@ -24,7 +24,7 @@ namespace lab.Tests
         {
             NewHashTable<Item> table = new NewHashTable<Item>("Коллекция 1");
             Journal journal = new Journal();
-            table.CollectionReferenceChanged += journal.WriteCollectionChange;
+            table.CollectionReferenceChanged += journal.WriteCollectionReferenceChange;
             table.Insert(22, Program.CreateRandomItem());
             table[22] = Program.CreateRandomItem();
             Assert.AreEqual(1, journal.Count);
@@ -35,7 +35,7 @@ namespace lab.Tests
         {
             NewHashTable<Item> table = new NewHashTable<Item>("Коллекция 1");
             Journal journal = new Journal();
-            table.CollectionCountChanged += journal.WriteCollectionChange;
+            table.CollectionCountChanged += journal.WriteCollectionCountChange;
             table.Insert(22, Program.CreateRandomItem());
             table.Insert(32, Program.CreateRandomItem());
             int count = 0;

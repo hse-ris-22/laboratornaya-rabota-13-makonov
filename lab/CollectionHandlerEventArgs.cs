@@ -10,13 +10,13 @@ namespace lab
     {
         public string? CollectionName { get; set; }
         public string? ChangeType { get; set; }
-        public object? ElementReference { get; set; }
+        public object? Obj { get; set; }
 
-        public CollectionHandlerEventArgs(string collectionName, string changeType, object reference)
+        public CollectionHandlerEventArgs(string collectionName, string changeType, object obj)
         {
             CollectionName = collectionName;
             ChangeType = changeType;
-            ElementReference = reference;
+            Obj = obj;
         }
     }
 }
